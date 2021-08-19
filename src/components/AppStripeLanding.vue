@@ -19,7 +19,15 @@
           </ul>
         </div>
         <div class="hidden lg:flex space-x-2">
-          <button class="pl-5 pr-5 pt-[5px] pb-[6px] bg-white text-white bg-opacity-10 rounded-full text-sm font-medium">Sign in</button>
+          <button class="pl-5 pr-5 pt-[5px] pb-[6px] bg-white text-white bg-opacity-10 rounded-full text-sm font-medium flex justify-between items-center space-x-2">
+            <span>Sign in</span>
+            <svg class="text-white stroke-2 stroke-current ml-1" style="fill: none;" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                <g fill-rule="evenodd">
+                    <!-- <path class="linePath" d="M0 5h7"></path> -->
+                    <path class="tipPath" d="M1 1l4 4-4 4"></path>
+                </g>
+              </svg>
+          </button>
         </div>
 
 
@@ -253,8 +261,8 @@
     </main>
   </div>
 
-  <canvas class="absolute h-[540px] md:h-[620px] w-screen bottom-0 -top-64 rotate-0 min-w-[1000px] -skew-y-12 bg-gradient-to-r from-purple-400 via-yellow-300 to-blue-500 opacity-30 z-[-9]"></canvas>
-  <canvas class="absolute h-[540px] md:h-[620px] w-screen bottom-0 -top-64 rotate-0 min-w-[1000px] -skew-y-12 bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 opacity-90 z-[-11]"></canvas>
+  <canvas class="absolute h-[540px] md:h-[620px] w-screen bottom-0 -top-64 rotate-0 min-w-[1000px] -skew-y-12 bg-gradient-to-r from-purple-400 via-yellow-200 to-blue-500 opacity-40 z-[-9]"></canvas>
+  <canvas class="absolute h-[540px] md:h-[620px] w-screen bottom-0 -top-64 rotate-0 min-w-[1000px] -skew-y-12 bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 opacity-100 z-[-11]"></canvas>
   <div class="container mx-auto max-w-6xl absolute grid grid-flow-col grid-cols-2 lg:grid-cols-4 min-h-screen w-screen inset-0 z-[-12]">
     <div class="sm:border-l border-r border-dashed border-gray-800 border-opacity-10"></div>
     <div class="sm:border-r border-dashed border-gray-800 border-opacity-10"></div>
