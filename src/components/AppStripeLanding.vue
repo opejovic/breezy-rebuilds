@@ -19,11 +19,11 @@
           </ul>
         </div>
         <div class="hidden lg:flex space-x-2">
-          <button class="pl-5 pr-5 pt-[5px] pb-[6px] bg-white text-white bg-opacity-10 rounded-full text-sm font-medium flex justify-between items-center space-x-2">
+          <button @mouseenter="animateArrow" @mouseleave="animateArrowBack" class="pl-5 pr-3 pt-[5px] pb-[6px] bg-white text-white bg-opacity-10 rounded-full text-sm font-medium flex items-center">
             <span>Sign in</span>
-            <svg class="text-white stroke-2 stroke-current ml-1" style="fill: none;" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+            <svg class="text-white stroke-2 stroke-current ml-2" fill="none" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
                 <g fill-rule="evenodd">
-                    <!-- <path class="linePath" d="M0 5h7"></path> -->
+                    <path class="linePath opacity-0" d="M0 5h7"></path>
                     <path class="tipPath" d="M1 1l4 4-4 4"></path>
                 </g>
               </svg>
@@ -62,20 +62,20 @@
 
           <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 justify-items-start" data-name="cta-buttons">
             <div class="flex justify-between items-center space-x-2 pl-6 xl:pl-4">
-              <button class="pl-5 pr-3 pt-[6px] pb-[6px] bg-gray-800 rounded-full text-white text-sm flex justify-between items-center space-x-3">
+              <button @mouseenter="animateArrow" @mouseleave="animateArrowBack" class="pl-5 pr-3 pt-[6px] pb-[6px] bg-gray-800 rounded-full text-white text-sm flex justify-between items-center space-x-3">
               <span>Start now</span>
               <svg class="text-white stroke-2 stroke-current ml-1" style="fill: none;" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
                 <g fill-rule="evenodd">
-                    <!-- <path class="linePath" d="M0 5h7"></path> -->
+                    <path class="linePath opacity-0" d="M0 5h7"></path>
                     <path class="tipPath" d="M1 1l4 4-4 4"></path>
                 </g>
               </svg>
             </button>
-            <button class="ml-2 px-0 text-gray-800 text-sm flex justify-between items-center">
+            <button @mouseenter="animateArrow" @mouseleave="animateArrowBack" class="ml-2 px-0 text-gray-800 text-sm flex justify-between items-center">
               <span>Contact Sales&nbsp;</span>
               <svg class="text-gray-800 stroke-2 stroke-current ml-1" style="fill: none;" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
                 <g fill-rule="evenodd">
-                    <!-- <path class="linePath" d="M0 5h7"></path> -->
+                    <path class="linePath opacity-0" d="M0 5h7"></path>
                     <path class="tipPath" d="M1 1l4 4-4 4"></path>
                 </g>
               </svg>
@@ -88,7 +88,13 @@
 
         <section class="hidden md:block relative px-6 xl:px-4">
           <div class="h-full ml-28">
-            <div class="bg-white h-full w-[930px] absolute top-0 rounded-lg shadow-2xl drop-shadow-lg -mt-16 left-[230px] opacity-30 z-[-9]"></div>
+            <div class="bg-white h-full w-[930px] absolute top-0 rounded-lg shadow-2xl drop-shadow-lg -mt-16 left-[230px] bg-opacity-30 p-6">
+              <div class="flex items-center space-x-2">
+                <svg width="20" height="20" viewBox="0 0 20 20"><path fill="#FFF" d="M10 0a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm3.3 6.11H4.34a.41.41 0 0 0 0 .83h8.94a2.89 2.89 0 0 1 0 5.77H7.65a.41.41 0 0 0 0 .83h5.64a3.71 3.71 0 0 0 0-7.43zm0 1.65a2.06 2.06 0 1 0 2.05 2.06c0-1.13-.92-2.06-2.06-2.06zm-2.83 3.3h-4.7a.41.41 0 0 0 0 .83h4.7a.41.41 0 0 0 0-.83zM13.3 8.6a1.24 1.24 0 1 1 0 2.47 1.24 1.24 0 0 1 0-2.47zm-3.3.8H3.41a.41.41 0 1 0 0 .83h6.6c.22 0 .4-.19.4-.42a.41.41 0 0 0-.41-.4zm.47-1.65H6.24a.41.41 0 1 0 0 .83h4.23a.41.41 0 1 0 0-.83z"></path></svg>
+                <span class="uppercase font-semibold text-xs tracking-wider text-white">Rocket rides</span>
+              </div>
+
+            </div>
             <!-- Phone -->
             <div class="bg-blue-50 w-[272px] rounded-[36px] shadow-2xl drop-shadow-2xl p-[8px]" >
               <div class="bg-gray-50 w-full h-full rounded-[36px] px-[16px] py-[24px]">
@@ -276,15 +282,34 @@
 import { ref, defineComponent } from 'vue'
 export default defineComponent({
   name: 'StripeLanding',
-  props: {
-    msg: {
-      type: String,
-      required: true
-    }
-  },
   setup: () => {
-    const count = ref(0)
-    return { count }
+    const getArrowData = function (element: any) {
+      const line = element.querySelector('.linePath');
+      const tip =  element.querySelector('.tipPath');
+
+      if (! line || ! tip) {
+        throw new Error('Elements with linePath and tipPath class should be present inside the parent element.')
+      }
+
+      return {
+        line: line,
+        tip: tip
+      }
+    }
+
+    const animateArrow = function (e: any) {
+      const arrow = getArrowData(e.currentTarget);
+      arrow.tip.setAttribute('d', 'M4 1l4 4-4 4');
+      arrow.line.classList.remove('opacity-0');
+    }
+
+    const animateArrowBack = function (e: any) {
+      const arrow = getArrowData(e.currentTarget);
+      arrow.tip.setAttribute('d', 'M1 1l4 4-4 4');
+      arrow.line.classList.add('opacity-0');
+    }
+
+    return { animateArrow, animateArrowBack }
   }
 })
 </script>
