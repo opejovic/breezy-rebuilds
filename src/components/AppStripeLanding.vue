@@ -19,7 +19,7 @@
           </ul>
         </div>
         <div class="hidden lg:flex space-x-2">
-          <button @mouseenter="animateArrow" @mouseleave="animateArrowBack" class="pl-5 pr-3 pt-[5px] pb-[6px] bg-white text-white bg-opacity-10 rounded-full text-sm font-medium flex items-center">
+          <button class="hoverArrow pl-5 pr-3 pt-[5px] pb-[6px] bg-white text-white bg-opacity-10 rounded-full text-sm font-medium flex items-center">
             <span>Sign in</span>
             <svg class="text-white stroke-2 stroke-current ml-2" fill="none" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
                 <g fill-rule="evenodd">
@@ -62,7 +62,7 @@
 
           <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 justify-items-start" data-name="cta-buttons">
             <div class="flex justify-between items-center space-x-2 pl-6 xl:pl-4">
-              <button @mouseenter="animateArrow" @mouseleave="animateArrowBack" class="pl-5 pr-3 pt-[6px] pb-[6px] bg-gray-800 rounded-full text-white text-sm flex justify-between items-center space-x-3">
+              <button class="hoverArrow pl-5 pr-3 pt-[6px] pb-[6px] bg-gray-800 rounded-full text-white text-sm flex justify-between items-center space-x-3">
               <span>Start now</span>
               <svg class="text-white stroke-2 stroke-current ml-1" style="fill: none;" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
                 <g fill-rule="evenodd">
@@ -71,7 +71,7 @@
                 </g>
               </svg>
             </button>
-            <button @mouseenter="animateArrow" @mouseleave="animateArrowBack" class="ml-2 px-0 text-gray-800 text-sm flex justify-between items-center">
+            <button class="hoverArrow ml-2 px-0 text-gray-800 text-sm flex justify-between items-center">
               <span>Contact Sales&nbsp;</span>
               <svg class="text-gray-800 stroke-2 stroke-current ml-1" style="fill: none;" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
                 <g fill-rule="evenodd">
@@ -315,5 +315,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+.hoverArrow:hover .tipPath {
+  transform: translateX(3px);
+}
+.hoverArrow:hover .linePath {
+  opacity: 1;
+}
 </style>
